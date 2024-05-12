@@ -40,9 +40,6 @@
                         </ul>
                     </div>
                     
-                    
-                    <!-- 组件 -->
-                    <?php $this->need('layout/plugins.php'); ?>
                 </main><!-- 中间 END -->
                 
                 <!-- 右侧 手机端768px不显示 -->
