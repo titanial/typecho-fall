@@ -25,6 +25,7 @@
 <!-- 电脑端 -->
 <link rel="stylesheet" type="text/css" media="all" href="<?php _getAssets('assets/css/style.css'); ?>"/>
 <?php } ?>
+<?php $this->options->CustomHeadEnd() ?>
 <style>
     <?php if ($this->options->themes): ?>
     :root{
@@ -40,6 +41,7 @@
         font-family: wodeziti;
         src: url('https://dsfs.oppo.com/store/public/font/OPPOSans-Medium.woff2') format("truetype");
     }
+    <?php $this->options->CustomCSS() ?>
 </style>
 <script>
     localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
