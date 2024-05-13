@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
  * Author: 林厌
- * CreateTime: 2024/5/7
+ * CreateTime: 2024/5/13
  * 主题功能
  */
 /* 
