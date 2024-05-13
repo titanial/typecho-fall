@@ -77,6 +77,13 @@ function _getAssets($assets, $type = true)
   if ($type) echo $assetsURL;
   else return  $assetsURL;
 }
+//总访问量
+function theAllViews()
+{
+    $db = Typecho_Db::get();
+    $row = $db->fetchAll('SELECT SUM(VIEWS) FROM `typecho_contents`');
+    echo number_format($row[0]['SUM(VIEWS)']);
+}
 /* wap客户端判断 */
 function wap(){
     if(@stristr($_SERVER['HTTP_VIA'],"wap")){
