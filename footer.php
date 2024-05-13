@@ -8,6 +8,9 @@
     //js出始化lazyload并设置图片显示方式
     $(function() {$("img.lazy").lazyload({effect: "fadeIn", threshold: 200});});
 </script>
+<script>
+    <?php $this->options->CustomScript() ?>
+</script>
 
 
 <?php $this->footer(); ?>
