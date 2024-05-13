@@ -37,8 +37,10 @@ function _Themes()
 {
   return "Fall";
 };
-//暴力解决访问加密文章会被 pjax 刷新页面的问题
-  if ($archive->hidden) header('HTTP/1.1 200 OK');
+function themeInit($archive)
+{
+  //解决访问加密文章会被 pjax 刷新页面的问题
+  if($archive->is('single')&&$archive->hidden&&$archive->request->isAjax()){$archive->response->setStatus(200);}
   //评论回复楼层最高999层.这个正常设置最高只有7层
   Helper::options()->commentsMaxNestingLevels = 999;
   //强制评论关闭反垃圾保护
@@ -52,7 +54,7 @@ function _Themes()
   Helper::options()->commentsHTMLTagAllowed .= '<img class src alt><div class>';
   //评论显示列表
   Helper::options()->commentsListSize = 5;
-
+}
 /* 页面结束计时 */
 function _endCountTime($precision = 3)
 {
