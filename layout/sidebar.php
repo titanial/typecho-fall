@@ -4,7 +4,7 @@
         <?php if ($this->is('post')) : ?> <!-- 先判断是不是post页面 是的话实现下面内容 -->
         <?php if($this->category == "photos"): ?> <!-- 判断分类是不是为相册样式 是的话实现下面内容 -->
         <div class="img_title">
-            <span>图库表</span>
+            <span>图表</span>
         </div>
         <div class="img_list">
             <?php echo getArticleImage($this,'single');?>
@@ -31,15 +31,33 @@
             </div>
         </div>
         
+        <?php
+        $custom = [];
+        $custom_text = $this->options->About;
+        if ($custom_text) {
+          $custom_arr = explode("\r\n", $custom_text);
+          if (count($custom_arr) > 0) {
+            for ($i = 0; $i < count($custom_arr); $i++) {
+              $title = explode("||", $custom_arr[$i])[0];
+              $Icon = explode("||", $custom_arr[$i])[1];
+              $custom[] = array("title" => trim($title), "Icon" => trim($Icon));
+            };
+          }
+        }
+        ?>
+        
         <div class="Tabs_center">
             <p class="Tabs-center_title">About Me</p>
             <div class="Tabs_About">
-                <div class="Tabs_About_svg flex items-center">
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.0839 15.812C19.6827 13.0691 19.6379 8.73845 16.9497 6.05025C14.2161 3.31658 9.78392 3.31658 7.05025 6.05025C4.36205 8.73845 4.31734 13.0691 6.91612 15.812C7.97763 14.1228 9.8577 13 12 13C14.1423 13 16.0224 14.1228 17.0839 15.812ZM8.38535 17.2848L12 20.8995L15.6147 17.2848C14.9725 15.9339 13.5953 15 12 15C10.4047 15 9.0275 15.9339 8.38535 17.2848ZM12 23.7279L5.63604 17.364C2.12132 13.8492 2.12132 8.15076 5.63604 4.63604C9.15076 1.12132 14.8492 1.12132 18.364 4.63604C21.8787 8.15076 21.8787 13.8492 18.364 17.364L12 23.7279ZM12 10C12.5523 10 13 9.55228 13 9C13 8.44772 12.5523 8 12 8C11.4477 8 11 8.44772 11 9C11 9.55228 11.4477 10 12 10ZM12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9C15 10.6569 13.6569 12 12 12Z"></path></svg>
-                    </span>
-                    <p>Xian You Xian</p>
-                </div>
+                
+                <?php foreach ($custom as $item) : ?>
+                    <div class="Tabs_About_svg flex items-center">
+                        <span>
+                            <?php echo $item['Icon'] ?>
+                        </span>
+                        <p><?php echo $item['title'] ?></p>
+                    </div>
+                <?php endforeach; ?>
                 <div class="Tabs_About_svg flex items-center">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.9996 0.5L16.2256 6.68342L23.4123 8.7918L18.8374 14.7217L19.053 22.2082L11.9996 19.6897L4.94617 22.2082L5.16179 14.7217L0.586914 8.7918L7.7736 6.68342L11.9996 0.5ZM11.9996 4.044L9.02186 8.40151L3.95659 9.887L7.18152 14.0655L7.02859 19.34L11.9996 17.566L16.9696 19.34L16.8177 14.0655L20.0416 9.887L14.9773 8.40151L11.9996 4.044ZM9.99959 12C9.99959 13.1046 10.895 14 11.9996 14C13.1042 14 13.9996 13.1046 13.9996 12H15.9996C15.9996 14.2091 14.2087 16 11.9996 16C9.79045 16 7.99959 14.2091 7.99959 12H9.99959Z"></path></svg>
@@ -77,6 +95,7 @@
                 </li>
             </div>
         </div>
+
     </section>
     
     <!-- 文章热门 -->
@@ -104,6 +123,14 @@
         </ul>
     </section>
     
+    <?php if ($this->options->自定义广告) : ?>
+    <!-- 广告 -->
+    <section class="reply_aside__item">
+        <h6 class="reply_widget-title"><?php _e('Custom'); ?></h6>
+        <?php $this->options->自定义广告() ?>
+    </section>
+    <?php endif; ?>
+    
     <!-- 博客信息 -->
     <section class="Info_aside__item">
         <h6 class="Info_widget-title"><?php _e('Blog Info'); ?></h6>
@@ -111,6 +138,7 @@
             <li>页面加载耗时：<?php _endCountTime(); ?></li>
             <li>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a>.<?php _e('由 <a href="http://www.typecho.org">Typecho</a> 强力驱动'); ?>.当前使用<a href="//ouyu.me"><?php echo _Themes();?>主题</a>.</li>
         </ul>
+        <?php $this->options->自定义版权() ?>
     </section>
     
 </aside>
