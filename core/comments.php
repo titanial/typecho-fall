@@ -8,9 +8,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 class comments {
     //评论头像
     public static function getAvator($email,$size){
-        
             $str = explode('@', $email);
-            $avatorSrc = comments::getGravator($email,$cdnUrl,$size);
+            $avatorSrc = comments::getGravator($email,$size);
         return $avatorSrc;
     }
     public static function avatarHtml($obj){
@@ -18,11 +17,7 @@ class comments {
         $avatorSrc = comments::getAvator($email,65);
         return ''.$avatorSrc.'';
     }
-    public static function getGravator($email,$host,$size){
-        $default = '';
-        if (strlen($options->defaultAvator) > 0){
-            $default = $options->defaultAvator;
-        }
+    public static function getGravator($email,$size){
         $url = '/';
         $rating = Helper::options()->commentsAvatarRating;
         $hash = md5(strtolower($email));
