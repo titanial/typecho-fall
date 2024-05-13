@@ -53,6 +53,65 @@ function themeConfig($form)
          注意：不填写时，请在主题文件assets-thumb里添加1-5张为png的图片
          '
     );
+    $About = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'About',
+    NULL,
+    NULL,
+    '自定义右侧栏About Me',
+    '介绍：用于修改主题默认About Me<br/>
+         格式：内容 || Icon（中间使用两个竖杠分隔）<br />
+         '
+    );
+    $自定义版权 = new Typecho_Widget_Helper_Form_Element_Textarea(
+    '自定义版权',
+    NULL,
+    NULL,
+    '自定义添加Blog Info',
+    '介绍：用于添加主题默认Blog Info内容<br/>
+         注意：pc端显示在左侧栏 wap端显示在底下，支持使用HTML<br />
+         '
+    );
+    $自定义广告 = new Typecho_Widget_Helper_Form_Element_Textarea(
+    '自定义广告',
+    NULL,
+    NULL,
+    '自定义添加Custom',
+    '介绍：用于添加主题Custom内容<br/>
+         注意：pc端显示在左侧栏 wap端不显示，支持使用HTML<br />
+         '
+    );
+    $CustomCSS = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'CustomCSS',
+    NULL,
+    NULL,
+    '自定义CSS（非必填）',
+    '介绍：请填写自定义CSS内容，填写时无需填写style标签。<br />
+         其他：如果想修改主题色、卡片透明度等，都可以通过这个实现 <br />
+         例如：body { --theme: #ff6800; --background: rgba(255,255,255,0.85) }'
+  );
+    $CustomScript = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'CustomScript',
+    NULL,
+    NULL,
+    '自定义JS（非必填）',
+    '介绍：请填写自定义JS内容，例如网站统计等，填写时无需填写script标签。'
+  );
+    $CustomHeadEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'CustomHeadEnd',
+    NULL,
+    NULL,
+    '自定义增加&lt;head&gt;&lt;/head&gt;里内容（非必填）',
+    '介绍：此处用于在&lt;head&gt;&lt;/head&gt;标签里增加自定义内容 <br />
+         例如：可以填写引入第三方css、js等等'
+  );
+    $CustomBodyEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'CustomBodyEnd',
+    NULL,
+    NULL,
+    '自定义&lt;body&gt;&lt;/body&gt;末尾位置内容（非必填）',
+    '介绍：此处用于填写在&lt;body&gt;&lt;/body&gt;标签末尾位置的内容 <br>
+         例如：可以填写引入第三方js脚本等等'
+  );
     $AssetsURL = new Typecho_Widget_Helper_Form_Element_Text(
     'AssetsURL',
     NULL,
@@ -69,6 +128,13 @@ function themeConfig($form)
     $form->addInput($description);
     $form->addInput($themes);
     $form->addInput($Thumbnail);
+    $form->addInput($About);
+    $form->addInput($自定义广告);
+    $form->addInput($自定义版权);
+    $form->addInput($CustomCSS);
+    $form->addInput($CustomScript);
+    $form->addInput($CustomHeadEnd);
+    $form->addInput($CustomBodyEnd);
     $form->addInput($AssetsURL);
 
     // $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
@@ -159,16 +225,6 @@ function themeFields($layout) {
          其他：如果不填写此项，则默认取文章标签'
     );
     $layout->addItem($keywords);
-
-    $abstract = new Typecho_Widget_Helper_Form_Element_Textarea(
-    'abstract',
-    NULL,
-    NULL,
-    '自定义摘要（非必填）',
-    '填写时：将会显示填写的摘要 <br>
-         不填写时：默认取文章里的内容'
-    );
-    $layout->addItem($abstract);
     
     }
 ?>
