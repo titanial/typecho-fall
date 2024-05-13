@@ -125,7 +125,7 @@ function threadedComments($comments, $options)
     <?php if ($comments->have()) : ?>
         <?php $comments->listComments(); ?>
         <div class="paging">
-    <?php $comments->pageNav('<i class="iconfont icon-icon-test"></i>', '<i class="iconfont icon-icon-test1"></i>', 3, '...', array('wrapTag' => 'ol', 'wrapClass' => 'page-navigator', 'itemTag' => 'li', 'textTag' => 'span', 'currentClass' => 'current', 'prevClass' => 'prev', 'nextClass' => 'next')); ?>
+            <?php $comments->pageNav('上页', '下页', '5', '……'); ?>
     </div>
     <?php endif; ?>
     </div>
