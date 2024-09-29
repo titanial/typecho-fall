@@ -157,6 +157,7 @@ function themeConfig($form)
  * @param Layout $layout
  */
 function themeFields($layout) {
+/*  报错 500 语法错误
     ?>
     <style>
         Textarea{
@@ -165,6 +166,7 @@ function themeFields($layout) {
         }
     </style>
 <?
+*/
     $uri = $_SERVER['REQUEST_URI'];
     // 文章
     if (strstr($uri, "write-post")) {
